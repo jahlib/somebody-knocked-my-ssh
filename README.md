@@ -35,16 +35,9 @@ Every server's `auth.log` eventually turns into a highlight reel of strangers tr
 ## Quick start
 
 ```bash
-
-cd somebody-knocked-my-ssh/
-
-sudo cp ban.sh /usr/local/sbin/ban.sh
+sudo wget "https://raw.githubusercontent.com/jahlib/somebody-knocked-my-ssh/refs/heads/main/ban.sh" -O "/usr/local/sbin/ban.sh"
 sudo chmod +x /usr/local/sbin/ban.sh
-
-# edit the URL at the top of the script to point at your own list
-sudo nano /usr/local/sbin/ban.sh
-
-sudo /usr/local/sbin/ban.sh
+sudo bash /usr/local/sbin/ban.sh
 ```
 
 ## Daily (or hourly) auto-update
@@ -54,7 +47,7 @@ sudo crontab -e
 ```
 
 ```cron
-0 */6 * * * /usr/local/sbin/ban.sh >> /var/log/blacklist-sync.log 2>&1
+0 */6 * * * bash /usr/local/sbin/ban.sh
 ```
 
 Every run re-downloads the list and re-syncs the ipset, so newly added entries on the remote list are picked up automatically — and, with mirror mode on, expired entries are dropped too.

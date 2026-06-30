@@ -57,4 +57,5 @@ mv "$TMP" "$BAN_FILE"
 trap - EXIT
 
 echo "removed $removed duplicate line(s); $after unique lines remain"
+sudo chmod 775 "$BAN_FILE"
 exit 2

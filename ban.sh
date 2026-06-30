@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
-# Один файл: ipset + iptables + синк с HTTP. Класть в crontab от root.
-# 0 * * * * /usr/local/sbin/blacklist-sync.sh >> /var/log/blacklist-sync.log 2>&1
+# 0 */6 * * * /usr/local/sbin/ban.sh
 set -euo pipefail
 
-# --- настройки ---
 URL="https://raw.githubusercontent.com/jahlib/somebody-knocked-my-ssh/refs/heads/main/ban.txt"
 SET_NAME="blacklist"
-REMOVE_ORPHANS=1          # 0 = только добавлять, 1 = зеркалить файл (удалять лишнее)
+REMOVE_ORPHANS=1
 LOCK_FILE="/run/blacklist-sync.lock"
 IPTABLES_COMMENT="ipset-blacklist-drop"
 # ---

@@ -13,6 +13,9 @@ Every server's `auth.log` eventually turns into a highlight reel of strangers tr
 | File | Purpose |
 |---|---|
 | `ban.sh` | Downloads the list from `$URL`, validates each entry, syncs it into an `ipset` (`hash:net`), and ensures one `iptables DROP` rule matches the whole set. Optionally mirrors the remote list exactly (removes stale entries that fell off the list). |
+|---|---|
+| `fast.sh` | Downloads the IP/CIDR list from $URL, bulk-loads the whole list into a temporary ipset via ipset restore (one command, no per-entry loops), then atomically swaps it with the live set — so traffic is never interrupted and sync time is nearly constant regardless of list size. Ensures one iptables DROP rule matches the set. |
+
 
 ## How it works
 

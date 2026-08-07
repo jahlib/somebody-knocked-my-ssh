@@ -10,7 +10,7 @@
 
 set -euo pipefail
 
-BAN_FILE="${BAN_FILE:-ban.txt}"
+BAN_FILE="${BAN_FILE:-full.txt}"
 
 if [[ ! -f "$BAN_FILE" ]]; then
     echo "error: file not found: $BAN_FILE" >&2
